@@ -1,32 +1,7 @@
 const SbAnsiString = require('./ansi-string');
+const { SbLogLinesOptions } = require('./options');
 const wrap = require('word-wrap');
-const trim = require('trim-whitespace');
-const clone = require('clone');
-const colors = require('./colors');
-
-const defaultLogLinesOptions = {
-  width: 30,
-  format: 'default',
-  applyFormatToWholeBlock: false
-}
-
-function mergeWithDefaultLinesOptions(options) {
-  if (options) {
-    if (!options.width) {
-      options.width = defaultLogLinesOptions.width;
-    }
-    if (!options.format) {
-      options.format = defaultLogLinesOptions.format;
-    }
-    if (typeof options.format == 'string') {
-      options.format = colors[options.format];
-    }
-    if (options.applyFormatToWholeBlock == undefined) {
-      options.applyFormatToWholeBlock = defaultLogLinesOptions.applyFormatToWholeBlock;
-    }
-    return options;
-  } else return defaultLogLinesOptions;
-}
+const utils = require('./utils');
 
 class SbLogLines extends Array {
 
@@ -39,7 +14,7 @@ class SbLogLines extends Array {
   }
 
   setOptions(options) {
-    this.options = clone(mergeWithDefaultLinesOptions(options));
+    this.options = SbLogLinesOptions.merge(options);
   }
 
   addMarginRight(spaces) {
@@ -57,31 +32,37 @@ class SbLogLines extends Array {
 
   push(...lines) {
     lines.forEach(line => {
-      if (this.options.applyFormatToWholeBlock) {
-        super.push(this.fillLine(line, true, true));
-      } else if (!this.isEmptyLine(line)){
-        for (let lineIndex = 0 ; lineIndex < this.length ; lineIndex++) {
-          this[lineIndex] = this.options.format(SbAnsiString.strip(this[lineIndex]));
+      if (line != '' && line != undefined) {
+        if (this.options.applyFormatToWholeBlock) {
+          super.push(this.fillLine(line, true, true));
+        } else if (!this.isEmptyLine(line)){
+          for (let lineIndex = 0 ; lineIndex < this.length ; lineIndex++) {
+            this[lineIndex] = this.options.format(SbAnsiString.strip(this[lineIndex]));
+          }
+          super.push(this.fillLine(line, true, false))
+        } else {
+          super.push(line);
         }
-        super.push(this.fillLine(line, true, false))
-      } else {
-        super.push(line);
       }
     })
   }
 
   pushUnformatted(...lines) {
-    lines.forEach(line => super.push(line))
+    lines.forEach(line => {
+      if (line != '' && line != undefined) {
+        super.push(line)
+      }
+    })
   }
 
   isEmptyLine(line) {
-    return new RegExp(/^  * $/).test(SbAnsiString.strip(line));
+    return utils.hasOnlySpaces(SbAnsiString.strip(line));
   }
 
   fillLine(string, format = true, formatAll = false) {
     string = SbAnsiString.strip(string);
     if (format && !formatAll) {
-      string = trim.trailing(string);
+      string = utils.trimTrailing(string);
     }
     let lengthDifference = this.options.width - string.length;
     if (lengthDifference < 0) throw new Error("String already exeeded length!");
@@ -121,19 +102,19 @@ class SbLogLines extends Array {
   static fromArray(array, options) {
     const lines = new SbLogLines();
     lines.setOptions(options);
-    array.forEach(line => lines.push(line));
+    lines.push(...array);
     return lines;
   }
 
   static fromArrayUnformatted(array, options) {
     const lines = new SbLogLines();
     lines.setOptions(options);
-    array.forEach(line => lines.pushUnformatted(line));
+    lines.pushUnformatted(...array);
     return lines;
   }
 
   static fromString(string, options) {
-    options = clone(mergeWithDefaultLinesOptions(options));
+    options = SbLogLinesOptions.merge(options);
     return SbLogLines.fromArray(
       wrap(SbAnsiString.strip(string), {
         width: options.width,
@@ -145,6 +126,5 @@ class SbLogLines extends Array {
   }
 
 }
-
 
 module.exports = SbLogLines;

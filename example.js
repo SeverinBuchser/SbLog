@@ -1,37 +1,53 @@
-const SbLog = require('./src/log');
-const SbHorizontalLog = require('./src/horizontal-log');
-const SbVerticalLog = require('./src/vertical-log');
-const SbTableLog = require('./src/table-log');
-const { border } = require('./src/prelog');
-const { verticalLine } = require('./src/separator');
+const {
+  SbLog,
+  SbHorizontalLog,
+  SbVerticalLog,
+  SbTableLog,
+  prelog,
+  separator } = require('.');
 const chalk = require('chalk');
 
-
+console.log(require('.'))
 const gridWidth = 40;
-const separator = ' | ';
-
+const separatorString = ' | ';
 
 const defaultLog = new SbLog();
 const smallLoger = new SbLog({
   width: 40,
-  prelog: border(),
+  prelog: prelog.border(),
   format: 'primary',
   applyFormatToWholeBlock: false
 })
 const horizontalLog = new SbHorizontalLog([smallLoger, smallLoger],{
-  separator,
-  prelog: border()
+  separatorString,
+  prelog: prelog.border()
 });
 const smallLogerWide = new SbLog({
-  width: 2 * gridWidth + separator.length,
-  prelog: border(),
+  width: 2 * gridWidth + separatorString.length,
+  prelog: prelog.border(),
   format: 'info',
   applyFormatToWholeBlock: false
 })
 const verticalLog = new SbVerticalLog([horizontalLog, smallLogerWide], {
-  separatorBuilder: verticalLine(),
-  prelog: border()
+  separatorBuilder: separator.line(2),
+  prelog: prelog.border()
 })
+
+const tableLog = new SbTableLog({
+  rows: [
+    {
+      columns: [
+        {},
+        {}
+      ]
+    },
+    {
+      columns: [{
+        width: 63
+      }]
+    }
+  ]
+});
 
 
 defaultLog.log("Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor inv")
@@ -50,18 +66,13 @@ verticalLog.log([
   ], "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor inv"
 ])
 
-const table = new SbTableLog({
-  rows: [
-    {
-      columns: [
-        {},
-        {}
-      ]
-    },
-    {
-      columns: 1
-    }
+console.log()
+tableLog.log([
+  [
+    "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor inv",
+    "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor inv"
+  ],
+  [
+    "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et e"
   ]
-})
-
-table.log([["hello", "hi"], ["asdf"]])
+]);

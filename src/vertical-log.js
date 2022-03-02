@@ -1,25 +1,12 @@
 const SbAnsiString = require('./ansi-string');
 const SbLogLines = require('./log-lines');
 const SbLogCore = require('./log-core');
-const clone = require('clone');
-
-const defaultVerticalLogOptions = {
-  separatorBuilder: (width) => ' '.repeat(width)
-}
-
-function mergeWithDefaultVerticalLogOptions(options) {
-  if (options) {
-    if (!options.separatorBuilder) {
-      options.separatorBuilder = defaultVerticalLogOptions.separatorBuilder;
-    }
-    return options;
-  } else return defaultVerticalLogOptions;
-}
+const { SbVerticalLogOptions } = require('./options');
 
 class SbVerticalLog extends SbLogCore {
 
   constructor(logs, options) {
-    super(clone(mergeWithDefaultVerticalLogOptions(options)));
+    super(SbVerticalLogOptions.merge(options));
     this.logs = logs ? logs : [];
   }
 
@@ -41,7 +28,10 @@ class SbVerticalLog extends SbLogCore {
     return allLines.reduce((joined, lines, linesIndex, allLines) => {
       lines.forEach(line => joined.push(line));
       if (linesIndex < allLines.length - 1) {
-        joined.push(this.options.separatorBuilder(lines.width))
+        let separator = this.options.separatorBuilder(lines.width);
+        if (separator) {
+          joined.push(...this.options.separatorBuilder(lines.width))
+        }
       }
       return joined;
     }, []);

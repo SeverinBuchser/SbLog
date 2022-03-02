@@ -1,21 +1,8 @@
-const clone = require('clone');
-
-const defaultLogCoreOptions = {
-  prelog: lines => lines
-}
-
-function mergeWithDefaultLogCoreOptions(options) {
-  if (options) {
-    if (!options.prelog) {
-      options.prelog = defaultLogCoreOptions.prelog;
-    }
-    return options;
-  } else return defaultLogCoreOptions;
-}
+const { SbLogCoreOptions } = require('./options');
 
 class SbLogCore {
   constructor(options) {
-    this.options = clone(mergeWithDefaultLogCoreOptions(options));
+    this.options = SbLogCoreOptions.merge(options);
   }
 
   build(strings) {return []}

@@ -1,28 +1,12 @@
 const SbAnsiString = require('./ansi-string');
 const SbLogLines = require('./log-lines');
 const SbLogCore = require('./log-core');
-const clone = require('clone');
-
-const defaultHorizontalLogOptions = {
-  separator: ' '.repeat(3)
-}
-
-function mergeWithDefaultHorizontalLogOptions(options) {
-  if (options) {
-    if (!options.separator) {
-      options.separator = defaultHorizontalLogOptions.separator;
-    }
-    if (typeof options.separator == 'number') {
-      options.separator = ' '.repeat(separator);
-    }
-    return options;
-  } else return defaultHorizontalLogOptions;
-}
+const { SbHorizontalLogOptions } = require('./options');
 
 class SbHorizontalLog extends SbLogCore {
 
   constructor(logs, options) {
-    super(clone(mergeWithDefaultHorizontalLogOptions(options)));
+    super(SbHorizontalLogOptions.merge(options));
     this.logs = logs ? logs : [];
   }
 

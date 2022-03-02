@@ -1,36 +1,11 @@
 const SbLogLines = require('./log-lines');
 const SbLogCore = require('./log-core');
-const colors = require('./colors');
-const clone = require('clone');
-
-const defaultLogOptions = {
-  width: 30,
-  format: colors['default'],
-  applyFormatToWholeBlock: false
-}
-
-function mergeWithDefaultLogOptions(options) {
-  if (options) {
-    if (!options.width) {
-      options.width = defaultLogOptions.width;
-    }
-    if (!options.format) {
-      options.format = defaultLogOptions.format;
-    }
-    if (typeof options.format == 'string') {
-      options.format = colors[options.format];
-    }
-    if (options.applyFormatToWholeBlock == undefined) {
-      options.applyFormatToWholeBlock = defaultLogOptions.applyFormatToWholeBlock;
-    }
-    return options;
-  } else return defaultLogOptions;
-}
+const { SbLogOptions } = require('./options');
 
 class SbLog extends SbLogCore {
 
   constructor(options) {
-    super(clone(mergeWithDefaultLogOptions(options)));
+    super(SbLogOptions.merge(options));
   }
 
   build(string) {
