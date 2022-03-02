@@ -1,0 +1,17 @@
+{
+  "name": "sb-log",
+  "version": "1.0.1",
+  "description": "A library for formatted console logs",
+  "main": "log.js",
+  "scripts": {
+    "example": "node example"
+  },
+  "author": "Severin Buchser",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^4.1.2",
+    "clone": "^2.1.2",
+    "trim-whitespace": "^1.3.3",
+    "word-wrap": "^1.2.3"
+  }
+}
