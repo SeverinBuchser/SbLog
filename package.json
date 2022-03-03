@@ -8,6 +8,10 @@
     "example": "node example"
   },
   "author": "Severin Buchser",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SeverinBuchser/SbLog.git"
+  },
   "license": "ISC",
   "dependencies": {
     "chalk": "^4.1.2",
