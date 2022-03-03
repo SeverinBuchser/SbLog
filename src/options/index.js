@@ -10,6 +10,9 @@ const color = require('./color');
 const prelog = require('./prelog');
 const separator = require('./separator');
 
+const fieldsConfig = require('./fields-config');
+const fieldsTransform = require('./fields-transform');
+
 module.exports = {
   SbOptions,
   SbLogLinesOptions,
@@ -22,5 +25,8 @@ module.exports = {
 
   color,
   prelog,
-  separator
+  separator,
+
+  fieldsConfig,
+  fieldsTransform
 }

@@ -9,7 +9,9 @@ const {
   SbTableLogRowOptions,
   color,
   prelog,
-  separator } = require('./options');
+  separator,
+  fieldsConfig,
+  fieldsTransform } = require('./options');
 
 const utils = require('./utils');
 
@@ -20,6 +22,7 @@ const SbLog = require('./log');
 const SbHorizontalLog = require('./horizontal-log');
 const SbVerticalLog = require('./vertical-log');
 const SbTableLog = require('./table-log');
+const SbFieldLog = require('./field-log');
 
 module.exports = {
   SbOptions,
@@ -35,6 +38,9 @@ module.exports = {
   prelog,
   separator,
 
+  fieldsConfig,
+  fieldsTransform,
+
   utils,
 
   SbAnsiString,
@@ -43,5 +49,6 @@ module.exports = {
   SbLog,
   SbHorizontalLog,
   SbVerticalLog,
-  SbTableLog
+  SbTableLog,
+  SbFieldLog
 }

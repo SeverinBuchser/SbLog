@@ -22,6 +22,9 @@ class SbAnsiString {
   }
 
   static strip(string) {
+    if (typeof string != 'string') {
+      console.log(string)
+    }
     return string.replace(regExp, '');
   }
 

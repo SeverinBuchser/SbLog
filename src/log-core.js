@@ -5,7 +5,7 @@ class SbLogCore {
     this.options = SbLogCoreOptions.merge(options);
   }
 
-  build(strings) {return []}
+  build() {return []}
 
   log(strings) {
     this.options.prelog(this.build(strings)).forEach(line => console.log(line));

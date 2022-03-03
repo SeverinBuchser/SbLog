@@ -6,10 +6,10 @@ const { SbTableLogOptions } = require('./options');
 class SbTableLog extends SbVerticalLog {
   constructor(options) {
     super([], SbTableLogOptions.merge(options));
-    this.buildLoggers();
+    this.buildLogs();
   }
 
-  buildLoggers() {
+  buildLogs() {
     this.logs = this.options.rows.map(row => {
       return new SbHorizontalLog(row.columns.map(column => {
         return new SbLog(column);
