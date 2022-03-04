@@ -27,6 +27,7 @@ class SbVerticalLog extends SbLogCore {
     return allLines.reduce((joined, lines, linesIndex, allLines) => {
       lines.forEach(line => joined.push(line));
       if (linesIndex < allLines.length - 1) {
+
         let separator = this.options.separatorBuilder(lines.width);
         if (separator) {
           joined.push(...this.options.separatorBuilder(lines.width))

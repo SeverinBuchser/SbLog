@@ -40,7 +40,7 @@ class SbTableLogOptions extends SbVerticalLogOptions {
 
 
 class SbTableLogRowOptions extends SbHorizontalLogOptions {
-  static defaults = new SbTableLogRowOptions([], ' | ');
+  static defaults = new SbTableLogRowOptions([], ' \u2502 ');
 
   constructor(columns, separator) {
     super(separator);

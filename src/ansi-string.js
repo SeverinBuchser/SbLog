@@ -21,10 +21,36 @@ class SbAnsiString {
     this.string = string;
   }
 
-  static strip(string) {
-    if (typeof string != 'string') {
-      console.log(string)
+  substring(indexA, indexB) {
+    if (indexB == undefined) {
+      indexB = this.strippedLength;
     }
+    if (indexA == indexB) return '';
+
+    let ansis = this.string.match(regExp)
+    let ansiPositions = [];
+    if (ansis) {
+      ansis = ansis.map(ansi => ansi.length);
+      let split = this.string.split(regExp);
+
+      let ansiPos = 0;
+      for (let i = 0 ; i < ansis.length ; i++) {
+        ansiPos += split[i].length
+        ansiPositions.push({pos: ansiPos, len: ansis[i]});
+      }
+    }
+
+    let indexAOffset = 0;
+    let indexBOffset = 0;
+
+    ansiPositions.forEach(position => {
+      if (indexA > position.pos) indexAOffset += position.len;
+      if (indexB >= position.pos) indexBOffset += position.len;
+    })
+    return this.string.substring(indexA + indexAOffset, indexB + indexBOffset);
+  }
+
+  static strip(string) {
     return string.replace(regExp, '');
   }
 

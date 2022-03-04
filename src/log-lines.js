@@ -1,4 +1,5 @@
 const SbAnsiString = require('./ansi-string');
+const SbVerticalString = require('./vertical-string');
 const { SbLogLinesOptions } = require('./options');
 const wrap = require('word-wrap');
 const utils = require('./utils');
@@ -11,6 +12,13 @@ class SbLogLines extends Array {
 
   get width() {
     return this.options.width;
+  }
+
+  toArray() {
+    return this.reduce((array, line) => {
+      array.push(line);
+      return array
+    }, []);
   }
 
   setOptions(options) {
@@ -73,6 +81,41 @@ class SbLogLines extends Array {
         return this.options.format(string) + ' '.repeat(lengthDifference);
       }
     } else return string + ' '.repeat(lengthDifference);
+  }
+
+  setHorizontal(string, index) {
+    this.splice(index, 1, string);
+  }
+
+  setVertical(string, index) {
+    this.spliceVertical(index, 1, string);
+  }
+
+  pushVertical(string) {
+    this.spliceVertical(this.width, 0, string);
+  }
+
+  spliceVertical(start, deleteCount, ...strings) {
+    if (strings) {
+      strings.forEach(string => {
+        if (!(string instanceof SbVerticalString)) {
+          throw new Error("String must be a vertical string!");
+        }
+      })
+    }
+    let stringsJoined = this.map(() => '');
+    strings.forEach(string => {
+      string.strings.forEach((character, index) => {
+        stringsJoined[index] += character;
+      })
+    })
+
+    this.forEach((line, lineIndex) => {
+      let ansiLine = new SbAnsiString(this[lineIndex]);
+      this[lineIndex] = ansiLine.substring(0, start) + stringsJoined[lineIndex] + ansiLine.substring(start + deleteCount)
+    })
+
+    this.options.width += strings.length - deleteCount;
   }
 
   static getTotalHeight(allLines) {

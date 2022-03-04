@@ -7,7 +7,7 @@ function line(marginOrMarginTop = 0, marginBottom = 0) {
   return width => {
     let gaps = [];
     gaps.push(...gap(marginOrMarginTop)(width));
-    gaps.push('-'.repeat(width));
+    gaps.push('\u2500'.repeat(width));
     gaps.push(...gap(marginBottom)(width));
     return gaps;
   };

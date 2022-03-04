@@ -1,12 +1,14 @@
 const SbLogCoreOptions = require('./log-core');
+const SbAnsiString = require('./../ansi-string');
 
 
 class SbHorizontalLogOptions extends SbLogCoreOptions {
-  static defaults = new SbHorizontalLogOptions(3, lines => lines);
+  static defaults = new SbHorizontalLogOptions(3, 2, lines => lines);
 
-  constructor(separator, prelog) {
+  constructor(separator, separatorCenter, prelog) {
     super(prelog);
     this.separator = separator;
+    this.separatorCenter = separatorCenter;
   }
 
   static merge(options, defaults) {
@@ -19,6 +21,10 @@ class SbHorizontalLogOptions extends SbLogCoreOptions {
 
     if (typeof options.separator == 'number') {
       options.separator = ' '.repeat(options.separator);
+    }
+    
+    if (options.separatorCenter == undefined) {
+      options.separatorCenter = Math.floor(SbAnsiString.strippedLength(options.separator) / 2);
     }
 
     return super.merge(options, defaults);

@@ -5,6 +5,10 @@ const { SbHorizontalLogOptions } = require('./options');
 
 class SbHorizontalLog extends SbLogCore {
 
+  get separatorWidth() {
+    return SbAnsiString.strippedLength(this.options.separator);
+  }
+
   constructor(logs, options) {
     super(SbHorizontalLogOptions.merge(options));
     this.logs = logs ? logs : [];
@@ -12,11 +16,11 @@ class SbHorizontalLog extends SbLogCore {
 
   build(strings) {
     if (!Array.isArray(strings) || strings.length != this.logs.length) {
-      throw new Erorr('Strings must be an array and there must be as many string objects as logs.');
+      throw new Error('Strings must be an array and there must be as many string objects as logs.');
     }
     let allLines = this.logs.map((log, index) => log.build(strings[index]));
     let height = SbLogLines.getMaxHeight(allLines);
-    let separatorWidth = SbAnsiString.strippedLength(this.options.separator) * (allLines.length - 1);
+    let separatorWidth = this.separatorWidth * (allLines.length - 1);
     let width = SbLogLines.getTotalWidth(allLines);
     allLines.forEach(lines => lines.addEmptyLines(height - lines.height))
 

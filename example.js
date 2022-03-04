@@ -11,7 +11,7 @@ const chalk = require('chalk');
 
 
 const gridWidth = 40;
-const separatorString = ' | ';
+const separatorString = ' \u2502 ';
 
 
 const defaultLog = new SbLog();
@@ -56,32 +56,6 @@ verticalLog.log([
 ])
 
 
-const tableLog = new SbTableLog({
-  rows: [
-    {
-      columns: [
-        {},
-        {}
-      ]
-    },
-    {
-      columns: [{
-        width: 63
-      }]
-    }
-  ]
-});
-tableLog.log([
-  [
-    "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor inv",
-    "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor inv"
-  ],
-  [
-    "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et e"
-  ]
-]);
-
-
 const startLog = new SbFieldLog('start');
 const entryLog = new SbFieldLog('entry');
 const copyLog = new SbFieldLog('copy');
@@ -111,7 +85,7 @@ endLog.log("building process", new Date());
 
 const verticalLogTwo = new SbVerticalLog([createLog, createLog], {
   separatorBuilder: separator.line(),
-  prelog: prelog.border()
+  prelog: prelog.border(1)
 })
 
 console.log()
@@ -119,3 +93,33 @@ verticalLogTwo.log([
   [["./dark.css", "./light.css"], ["100kb", "100kb"]],
   [["./dark.css", "./light.css"], ["100kb", "100kb"]]
 ])
+
+
+// const tableLog = new SbTableLog({
+//   rows: [
+//     {
+//       columns: [
+//         {},
+//         {},
+//         {}
+//       ]
+//     },
+//     {
+//       columns: [{
+//         width: 63
+//       },
+//       {}]
+//     }
+//   ]
+// });
+// tableLog.log([
+//   [
+//     "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor inv",
+//     "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor inv",
+//     "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor inv"
+//   ],
+//   [
+//     "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et e",
+//     "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et e"
+//   ]
+// ]);
