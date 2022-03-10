@@ -1,4 +1,4 @@
-const SbOptions = require('./options');
+const SbOptions = require('../../options/options');
 
 
 class SbLogCoreOptions extends SbOptions {

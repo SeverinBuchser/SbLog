@@ -1,11 +1,11 @@
-const SbLogLines = require('./log-lines');
-const SbLogCore = require('./log-core');
-const { SbVerticalLogOptions } = require('./options');
+const SbLogVerticalOptions = require('./log-vertical-options');
+const { SbLogCore } = require('../core');
+const { SbLines } = require('../../lines');
 
-class SbVerticalLog extends SbLogCore {
+class SbLogVertical extends SbLogCore {
 
   constructor(logs, options) {
-    super(SbVerticalLogOptions.merge(options));
+    super(SbLogVerticalOptions.merge(options));
     this.logs = logs ? logs : [];
   }
 
@@ -14,10 +14,10 @@ class SbVerticalLog extends SbLogCore {
       throw new Erorr('Strings must be an array and there must be as many string objects as logs.');
     }
     let allLines = this.logs.map((log, index) => log.build(strings[index]));
-    let width = SbLogLines.getMaxWidth(allLines);
+    let width = SbLines.getMaxWidth(allLines);
     allLines.forEach(lines => lines.addMarginRight(width - lines.width));
 
-    return SbLogLines.fromArrayUnformatted(this.joinLines(allLines), {
+    return SbLines.fromArrayUnformatted(this.joinLines(allLines), {
       ...this.options,
       width
     })
@@ -39,4 +39,4 @@ class SbVerticalLog extends SbLogCore {
 
 }
 
-module.exports = SbVerticalLog;
+module.exports = SbLogVertical;

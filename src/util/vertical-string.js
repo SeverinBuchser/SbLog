@@ -9,7 +9,11 @@ class SbVerticalString {
   }
 
   constructor(strings, index = 0) {
-    this.strings = strings.map(string => string.substring(index, index + 1));
+    if (typeof strings == 'string') {
+      this.strings = [strings.split('')[index]];
+    } else {
+      this.strings = strings.map(string => string.substring(index, index + 1));
+    }
   }
 
   get(index) {

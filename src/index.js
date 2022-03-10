@@ -1,54 +1,49 @@
+const { SbLines, SbLinesOptions } = require('./lines');
 const {
-  SbOptions,
-  SbLogLinesOptions,
+  SbLogCore,
   SbLogCoreOptions,
-  SbLogOptions,
-  SbHorizontalLogOptions,
-  SbVerticalLogOptions,
-  SbTableLogOptions,
-  SbTableLogRowOptions,
-  color,
-  prelog,
-  separator,
-  fieldsConfig,
-  fieldsTransform } = require('./options');
+  SbLogBlock,
+  SbLogBlockOptions,
+  SbLogHorizontal,
+  SbLogHorizontalOptions,
+  SbLogVertical,
+  SbLogVerticalOptions,
+  SbLogTable,
+  SbLogTableOptions,
+  SbLogTableRowOptions,
+  SbLogField,
+  fieldConfig,
+  fieldTransform,
+} = require('./log');
+const { SbOptions } = require('./options');
 
-const utils = require('./utils');
+const prelog = require('./prelog');
+const separator = require('./separator');
+const util = require('./util');
 
-const SbAnsiString = require('./ansi-string');
-const SbLogLines = require('./log-lines');
-const SbLogCore = require('./log-core');
-const SbLog = require('./log');
-const SbHorizontalLog = require('./horizontal-log');
-const SbVerticalLog = require('./vertical-log');
-const SbTableLog = require('./table-log');
-const SbFieldLog = require('./field-log');
+
+
+const color = require('./color');
+const lineConfig = require('./line-config');
+const replacer = require('./line-config');
+
+
 
 module.exports = {
-  SbOptions,
-  SbLogLinesOptions,
-  SbLogCoreOptions,
-  SbLogOptions,
-  SbHorizontalLogOptions,
-  SbVerticalLogOptions,
-  SbTableLogOptions,
-  SbTableLogRowOptions,
-
   color,
   prelog,
   separator,
 
-  fieldsConfig,
-  fieldsTransform,
+  fieldConfig,
+  fieldTransform,
 
-  utils,
+  util,
 
-  SbAnsiString,
-  SbLogLines,
+  SbLines,
   SbLogCore,
-  SbLog,
-  SbHorizontalLog,
-  SbVerticalLog,
-  SbTableLog,
-  SbFieldLog
+  SbLogBlock,
+  SbLogHorizontal,
+  SbLogVertical,
+  SbLogTable,
+  SbLogField
 }

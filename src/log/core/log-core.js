@@ -1,4 +1,4 @@
-const { SbLogCoreOptions } = require('./options');
+const SbLogCoreOptions = require('./log-core-options');
 
 class SbLogCore {
   constructor(options) {

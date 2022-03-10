@@ -1,16 +1,16 @@
-const SbAnsiString = require('./ansi-string');
-const SbLogLines = require('./log-lines');
-const SbLogCore = require('./log-core');
-const { SbHorizontalLogOptions } = require('./options');
+const SbLogHorizontalOptions = require('./log-horizontal-options');
+const { SbLines } = require('../../lines');
+const { SbLogCore } = require('../core');
+const { SbAnsiString } = require('../../util');
 
-class SbHorizontalLog extends SbLogCore {
+class SbLogHorizontal extends SbLogCore {
 
   get separatorWidth() {
     return SbAnsiString.strippedLength(this.options.separator);
   }
 
   constructor(logs, options) {
-    super(SbHorizontalLogOptions.merge(options));
+    super(SbLogHorizontalOptions.merge(options));
     this.logs = logs ? logs : [];
   }
 
@@ -18,13 +18,15 @@ class SbHorizontalLog extends SbLogCore {
     if (!Array.isArray(strings) || strings.length != this.logs.length) {
       throw new Error('Strings must be an array and there must be as many string objects as logs.');
     }
-    let allLines = this.logs.map((log, index) => log.build(strings[index]));
-    let height = SbLogLines.getMaxHeight(allLines);
-    let separatorWidth = this.separatorWidth * (allLines.length - 1);
-    let width = SbLogLines.getTotalWidth(allLines);
-    allLines.forEach(lines => lines.addEmptyLines(height - lines.height))
 
-    return SbLogLines.fromArrayUnformatted(this.joinLines(allLines), {
+    let allLines = this.logs.map((log, index) => log.build(strings[index]));
+    let height = SbLines.getMaxHeight(allLines);
+    let separatorWidth = this.separatorWidth * (allLines.length - 1);
+    let width = SbLines.getTotalWidth(allLines);
+
+    allLines.forEach(lines => lines.addMarginBottom(height - lines.height))
+
+    return SbLines.fromArrayUnformatted(this.joinLines(allLines), {
       ...this.options,
       width: width + separatorWidth
     });
@@ -45,4 +47,4 @@ class SbHorizontalLog extends SbLogCore {
 
 }
 
-module.exports = SbHorizontalLog;
+module.exports = SbLogHorizontal;

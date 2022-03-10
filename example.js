@@ -1,24 +1,22 @@
 const {
-  SbLog,
-  SbHorizontalLog,
-  SbVerticalLog,
-  SbTableLog,
-  SbFieldLog,
+  SbLogBlock,
+  SbLogHorizontal,
+  SbLogVertical,
+  SbLogTable,
+  SbLogField,
   prelog,
-  separator,
-  fieldsConfig } = require('./src');
+  separator } = require('./src');
 const chalk = require('chalk');
-
 
 const gridWidth = 40;
 const separatorString = ' \u2502 ';
 
 
-const defaultLog = new SbLog();
+const defaultLog = new SbLogBlock();
 defaultLog.log("Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor inv")
 
 
-const smallLoger = new SbLog({
+const smallLoger = new SbLogBlock({
   width: 40,
   prelog: prelog.border(),
   format: 'primary',
@@ -28,7 +26,7 @@ console.log()
 smallLoger.log("Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor inv")
 
 
-const horizontalLog = new SbHorizontalLog([smallLoger, smallLoger],{
+const horizontalLog = new SbLogHorizontal([smallLoger, smallLoger],{
   separatorString,
   prelog: prelog.border()
 });
@@ -38,14 +36,14 @@ horizontalLog.log([
 ])
 
 
-const smallLogerWide = new SbLog({
+const smallLogerWide = new SbLogBlock({
   width: 2 * gridWidth + separatorString.length,
   prelog: prelog.border(),
   format: 'info',
   applyFormatToWholeBlock: false
 })
-const verticalLog = new SbVerticalLog([horizontalLog, smallLogerWide], {
-  separatorBuilder: separator.line(2),
+const verticalLog = new SbLogVertical([horizontalLog, smallLogerWide], {
+  separatorBuilder: separator.vLine(2, 2, 'solid'),
   prelog: prelog.border()
 })
 verticalLog.log([
@@ -56,15 +54,15 @@ verticalLog.log([
 ])
 
 
-const startLog = new SbFieldLog('start');
-const entryLog = new SbFieldLog('entry');
-const copyLog = new SbFieldLog('copy');
-const createLog = new SbFieldLog('create');
-const deleteLog = new SbFieldLog('delete');
-const informLog = new SbFieldLog('inform');
-const warnLog = new SbFieldLog('warn');
-const compileLog = new SbFieldLog('compile');
-const endLog = new SbFieldLog('end');
+const startLog = new SbLogField('start');
+const entryLog = new SbLogField('entry');
+const copyLog = new SbLogField('copy');
+const createLog = new SbLogField('create');
+const deleteLog = new SbLogField('delete');
+const informLog = new SbLogField('inform');
+const warnLog = new SbLogField('warn');
+const compileLog = new SbLogField('compile');
+const endLog = new SbLogField('end');
 
 
 console.log()
@@ -83,9 +81,9 @@ warnLog.log("There is an important warning!");
 compileLog.log("dark theme", "1000ms");
 endLog.log("building process", new Date());
 
-const verticalLogTwo = new SbVerticalLog([createLog, createLog], {
-  separatorBuilder: separator.line(),
-  prelog: prelog.border(1)
+const verticalLogTwo = new SbLogVertical([createLog, createLog], {
+  separatorBuilder: separator.vLine(2, 2, 'solidBold'),
+  prelog: prelog.border('solidBold')
 })
 
 console.log()
@@ -95,31 +93,31 @@ verticalLogTwo.log([
 ])
 
 
-// const tableLog = new SbTableLog({
-//   rows: [
-//     {
-//       columns: [
-//         {},
-//         {},
-//         {}
-//       ]
-//     },
-//     {
-//       columns: [{
-//         width: 63
-//       },
-//       {}]
-//     }
-//   ]
-// });
-// tableLog.log([
-//   [
-//     "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor inv",
-//     "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor inv",
-//     "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor inv"
-//   ],
-//   [
-//     "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et e",
-//     "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et e"
-//   ]
-// ]);
+const tableLog = new SbLogTable({
+  rows: [
+    {
+      columns: [
+        {},
+        {},
+        {}
+      ]
+    },
+    {
+      columns: [{
+        width: 63
+      },
+      {}]
+    }
+  ]
+});
+tableLog.log([
+  [
+    "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor inv",
+    "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor inv",
+    "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor inv"
+  ],
+  [
+    "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et e",
+    "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et e"
+  ]
+]);

@@ -1,11 +1,11 @@
-const SbVerticalLogOptions = require('./vertical-log');
-const SbHorizontalLogOptions = require('./horizontal-log');
-const { border } = require('./prelog');
-const { line } = require('./separator');
+const { SbLogVerticalOptions } = require('../vertical');
+const { SbLogHorizontalOptions } = require('../horizontal');
+const { border } = require('../../prelog');
+const { vLine } = require('../../separator');
 
 
-class SbTableLogOptions extends SbVerticalLogOptions {
-  static defaults = new SbTableLogOptions([], undefined, undefined, line(), border())
+class SbLogTableOptions extends SbLogVerticalOptions {
+  static defaults = new SbLogTableOptions([], undefined, undefined, vLine(), border())
 
   constructor(rows, rowNumber, columnNumber, separatorBuilder, prelog) {
     super(separatorBuilder, prelog);
@@ -15,7 +15,7 @@ class SbTableLogOptions extends SbVerticalLogOptions {
   }
 
   static merge(options, defaults) {
-    defaults = super.getDefaults(defaults, SbTableLogOptions.defaults);
+    defaults = super.getDefaults(defaults, SbLogTableOptions.defaults);
     options = super.getOptions(options, defaults);
     if (!options.rowNumber || !options.columnNumber) {
 
@@ -24,14 +24,14 @@ class SbTableLogOptions extends SbVerticalLogOptions {
       ], options, defaults);
 
       options.rows = options.rows.map(row => {
-        return SbTableLogRowOptions.merge(row);
+        return SbLogTableRowOptions.merge(row);
       })
     } else { // if rowNumber and columnNumber are both set, ignore the rows
       options.rows = [];
       for (let row = 0 ; row < options.rowNumber ; row ++) {
-        let rowOptions = SbTableLogRowOptions.defaults;
+        let rowOptions = SbLogTableRowOptions.defaults;
         rowOptions.columns = options.columnNumber;
-        options.rows.push(SbTableLogRowOptions.merge(rowOptions));
+        options.rows.push(SbLogTableRowOptions.merge(rowOptions));
       }
     }
     return super.merge(options, defaults);
@@ -39,8 +39,8 @@ class SbTableLogOptions extends SbVerticalLogOptions {
 }
 
 
-class SbTableLogRowOptions extends SbHorizontalLogOptions {
-  static defaults = new SbTableLogRowOptions([], ' \u2502 ');
+class SbLogTableRowOptions extends SbLogHorizontalOptions {
+  static defaults = new SbLogTableRowOptions([], ' \u2502 ');
 
   constructor(columns, separator) {
     super(separator);
@@ -48,7 +48,7 @@ class SbTableLogRowOptions extends SbHorizontalLogOptions {
   }
 
   static merge(options, defaults) {
-    defaults = super.getDefaults(defaults, SbTableLogRowOptions.defaults);
+    defaults = super.getDefaults(defaults, SbLogTableRowOptions.defaults);
     options = super.getOptions(options, defaults);
 
     super.mergeKeys([
@@ -69,6 +69,6 @@ class SbTableLogRowOptions extends SbHorizontalLogOptions {
 
 
 module.exports = {
-  SbTableLogOptions,
-  SbTableLogRowOptions
+  SbLogTableOptions,
+  SbLogTableRowOptions
 };

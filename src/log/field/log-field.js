@@ -1,25 +1,30 @@
-const SbLogLines = require('./log-lines');
-const SbTableLog = require('./table-log');
-const { SbTableLogOptions, fieldsConfig, fieldsTransform, separator } = require('./options');
+const { SbLogTable, SbLogTableOptions } = require('../table');
+const { none } = require('../../separator');
+const fieldTransform = require('./field-transform');
+const fieldConfig = require('./field-config');
 
-class SbFieldLog extends SbTableLog {
+class SbLogField extends SbLogTable {
 
   constructor(config) {
     super();
 
-    if (fieldsConfig.hasOwnProperty(config)) {
-      this.config = fieldsConfig[config];
+    if (fieldConfig.hasOwnProperty(config)) {
+      this.config = fieldConfig[config];
     } else {
       this.config = config;
     }
   }
 
-  transformFields(inputFields) {
-    let rowNumber = inputFields.reduce((rowNumber, inputField) => {
+  getRowNumber(inputFields) {
+    return inputFields.reduce((rowNumber, inputField) => {
       if (Array.isArray(inputField)) {
         return Math.max(rowNumber, inputField.length);
       } else return Math.max(rowNumber, 1);
-    }, 0)
+    }, 0);
+  }
+
+  transformFields(inputFields) {
+    let rowNumber = this.getRowNumber(inputFields);
 
     if (!this.config.multiple && rowNumber > 1) {
       throw new Error('Multiple field rows are not allowed!');
@@ -63,7 +68,7 @@ class SbFieldLog extends SbTableLog {
       return fieldsRow.map((fieldRow, fieldIndex) => {
         let configField = this.config.fields[fieldIndex];
         if (configField.hasOwnProperty("transform")) {
-          let transform = fieldsTransform[configField.transform];
+          let transform = fieldTransform[configField.transform];
           return transform(fieldRow);
         } else return fieldRow;
       })
@@ -96,15 +101,12 @@ class SbFieldLog extends SbTableLog {
     })
 
     fieldsRows.forEach((fieldsRow, index) => {
-      if (index == 0) {
-        fieldsRow.splice(0, 0, this.config.name);
-      } else {
-        fieldsRow.splice(0, 0, '');
-      }
+      fieldsRow.splice(0, 0, index == 0 ? this.config.name : '');
     })
-    this.options = SbTableLogOptions.merge({
+
+    this.options = SbLogTableOptions.merge({
       rows,
-      separatorBuilder: separator.none,
+      separatorBuilder: none,
       prelog: lines => lines
     });
     return fieldsRows;
@@ -122,4 +124,4 @@ class SbFieldLog extends SbTableLog {
 
 }
 
-module.exports = SbFieldLog;
+module.exports = SbLogField;

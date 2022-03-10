@@ -1,19 +1,19 @@
-const SbOptions = require('./options');
-const color = require('./color');
+const { SbLogCoreOptions } = require('../core');
+const color = require('../../color');
 
 
-class SbLogLinesOptions extends SbOptions {
-  static defaults = new SbLogLinesOptions(30, 'default', false);
+class SbLogBlockOptions extends SbLogCoreOptions {
+  static defaults = new SbLogBlockOptions(30, 'default', false, lines => lines);
 
-  constructor(width, format, applyFormatToWholeBlock) {
-    super();
+  constructor(width, format, applyFormatToWholeBlock, prelog) {
+    super(prelog);
     this.width = width;
     this.format = format;
     this.applyFormatToWholeBlock = applyFormatToWholeBlock;
   }
 
   static merge(options, defaults) {
-    defaults = super.getDefaults(defaults, SbLogLinesOptions.defaults);
+    defaults = super.getDefaults(defaults, SbLogBlockOptions.defaults);
     options = super.getOptions(options, defaults);
 
     super.mergeKeys([
@@ -30,4 +30,4 @@ class SbLogLinesOptions extends SbOptions {
 }
 
 
-module.exports = SbLogLinesOptions;
+module.exports = SbLogBlockOptions;
