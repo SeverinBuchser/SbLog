@@ -7,7 +7,7 @@ const { SbLogCoreOptions } = require('../core');
 const color = require('../../color');
 
 /**
- * Describes the options which a {@link SbLogBlock} object can take.
+ * @classdesc Describes the options which a {@link SbLogBlock} object can take.
  */
 class SbLogBlockOptions extends SbLogCoreOptions {
   /**

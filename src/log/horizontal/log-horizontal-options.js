@@ -6,7 +6,8 @@
 const { SbLogCoreOptions } = require('../core');
 
 /**
- * Describes the options which a {@link SbLogHorizontal} object can take.
+ * @classdesc Describes the options which a {@link SbLogHorizontal} object can
+ * take.
  */
 class SbLogHorizontalOptions extends SbLogCoreOptions {
   /**

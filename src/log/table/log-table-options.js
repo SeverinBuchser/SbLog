@@ -1,12 +1,32 @@
+/**
+ * LogTable options module.
+ * @module log-table-options
+ */
+
 const { SbLogVerticalOptions } = require('../vertical');
 const { SbLogHorizontalOptions } = require('../horizontal');
 const { border } = require('../../prelog');
 const { vLine } = require('../../separator');
+const { solid } = require('../../line-config');
 
-
+/**
+ * @classdesc Describes the options which a {@link SbLogHorizontal} object can
+ * take.
+ */
 class SbLogTableOptions extends SbLogVerticalOptions {
+  /**
+   * Default options.
+   * @see {@link vLine}
+   * @see {@link border}
+   */
   static defaults = new SbLogTableOptions([], undefined, undefined, vLine(), border())
 
+  /**
+   * Instantiates a new {@link SbLogTableOptions} object.
+   * @param {Array<object>} rows The rows of the log.
+   * @param {number} rowNumber The number of rows.
+   * @param {number} columnNumber The number of column.
+   */
   constructor(rows, rowNumber, columnNumber, separatorBuilder, prelog) {
     super(separatorBuilder, prelog);
     this.rows = rows;
@@ -14,6 +34,16 @@ class SbLogTableOptions extends SbLogVerticalOptions {
     this.columnNumber = columnNumber;
   }
 
+  /**
+   * Merges options width default options. If the default options are not
+   * undefined, the {@link SbLogHorizontalOptions.defaults} member gets used as
+   * the default options. If both the rowNumber and columnNumber options are set
+   * the method builds rows based on default row and column options. If not, the
+   * method merges each of the row options with the default row options.
+   * @param {object} options Any options object.
+   * @param {object} defaults The defaults options.
+   * @returns {object} The merged options.
+   */
   static merge(options, defaults) {
     defaults = super.getDefaults(defaults, SbLogTableOptions.defaults);
     options = super.getOptions(options, defaults);
@@ -38,15 +68,39 @@ class SbLogTableOptions extends SbLogVerticalOptions {
   }
 }
 
-
+/**
+ * @classdesc Describes the options which a row of the {@link SbLogHorizontal}
+ * object can take.
+ */
 class SbLogTableRowOptions extends SbLogHorizontalOptions {
-  static defaults = new SbLogTableRowOptions([], ' \u2502 ');
+  /**
+   * Default options.
+   * @see {@link solid}
+   */
+  static defaults = new SbLogTableRowOptions([], ' ' + solid.v + ' ');
 
+  /**
+   * Instantiates a new {@link SbLogTableRowOptions} object.
+   * @param {Array<object>} columns The columns of the log.
+   * @param {string} separator The horizontal separator of the log.
+   */
   constructor(columns, separator) {
     super(separator);
     this.columns = columns;
   }
 
+  /**
+   * Merges options width default options. If the default options are not
+   * undefined, the {@link SbLogHorizontalOptions.defaults} member gets used as
+   * the default options. If the separator value in the options is a number, the
+   * method will replace the separator value with a string containing the number
+   * of spaces which is specified by the original value. If the type of the
+   * columns is a number, the method creates as many default columns as the
+   * columns value suggests.
+   * @param {object} options Any options object.
+   * @param {object} defaults The defaults options.
+   * @returns {object} The merged options.
+   */
   static merge(options, defaults) {
     defaults = super.getDefaults(defaults, SbLogTableRowOptions.defaults);
     options = super.getOptions(options, defaults);

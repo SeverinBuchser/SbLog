@@ -6,7 +6,7 @@
 const SbOptions = require('../../options/options');
 
 /**
- * Describes the options which a {@link SbLogCore} object can take.
+ * @classdesc Describes the options which a {@link SbLogCore} object can take.
  */
 class SbLogCoreOptions extends SbOptions {
   /**

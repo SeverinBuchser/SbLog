@@ -7,7 +7,7 @@ const { SbOptions } = require('../options');
 const color = require('../color');
 
 /**
- * Describes the options which a {@link SbLines} object can take.
+ * @classdesc Describes the options which a {@link SbLines} object can take.
  */
 class SbLinesOptions extends SbOptions {
   /**

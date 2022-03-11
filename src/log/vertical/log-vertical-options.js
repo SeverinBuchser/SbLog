@@ -7,7 +7,8 @@ const { SbLogCoreOptions } = require('../core');
 const { empty } = require('../../separator');
 
 /**
- * Describes the options which a {@link SbLogVertical} object can take.
+ * @classdesc Describes the options which a {@link SbLogVertical} object can
+ * take.
  */
 class SbLogVerticalOptions extends SbLogCoreOptions {
   /**
@@ -29,7 +30,7 @@ class SbLogVerticalOptions extends SbLogCoreOptions {
   /**
    * Merges options width default options. If the default options are not
    * undefined, the {@link SbLogHorizontalOptions.defaults} member gets used as
-   * the default options. 
+   * the default options.
    * @param {object} options Any options object.
    * @param {object} defaults The defaults options.
    * @returns {object} The merged options.

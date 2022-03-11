@@ -1,3 +1,8 @@
+/**
+ * table module.
+ * @module table
+ */
+
 const SbLogTable = require('./log-table');
 const { SbLogTableOptions, SbLogTableRowOptions } = require('./log-table-options');
 
