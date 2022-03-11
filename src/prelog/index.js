@@ -1,3 +1,8 @@
+/**
+ * prelog module.
+ * @module prelog
+ */
+
 const border = require('./border');
 
 module.exports = {

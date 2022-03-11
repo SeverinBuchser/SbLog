@@ -2,6 +2,19 @@ const { SbVerticalString, builder, replacer } = require('../util');
 const lineConfig = require('../line-config');
 const finder = require('../finder');
 
+/**
+ * Adds a border to a lines block. The border must use a predefined
+ * configuration. The configuration consists out of border segments out of
+ * unicode characters. The method creates a border with corners around the block
+ * as well as replaces all corners inside the block with the apropriate
+ * characters. For example if a horizontal separator meets a vertical one, a T-
+ * junction is used instead of the horizontal line segment.
+ * @function border
+ * @param {string} config The line config to use.
+ * @returns {string} The lines block with a border around it.
+ * @see {@link lineConfig}
+ * @see {@link https://www.w3.org/TR/xml-entity-names/025.html}
+ */
 module.exports = function border(config = 'solid') {
   return lines => {
     const firstVString = new SbVerticalString(lines.toArray(), 0);
