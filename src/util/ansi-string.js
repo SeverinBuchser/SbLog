@@ -1,26 +1,65 @@
+/**
+ * SbAnsiString class module.
+ * @module SbAnsiString
+ */
+
+/**
+ * A regexp for identifing ANSI-escape-characters.
+ * @constant {RegExp}
+ */
 const regExp = new RegExp([
   '[\\u001B\\u009B][[\\]()#;?]*(?:(?:(?:(?:;[-a-zA-Z\\d\\/#&.:=?%@~_]+)*|[a-zA-Z\\d]+(?:;[-a-zA-Z\\d\\/#&.:=?%@~_]*)*)?\\u0007)',
   '(?:(?:\\d{1,4}(?:;\\d{0,4})*)?[\\dA-PR-TZcf-nq-uy=><~]))'
 ].join('|'), 'g')
 
+/**
+ * @classdesc A string which works with ANSI-escape-characters. The goal of the
+ * class is to work with a string, which has ANSI-characters and to not
+ * interfere with these.
+ */
 class SbAnsiString {
 
+  /**
+   * Calculates the length of the string including the ANSI-characters.
+   * @returns {number} The length of the string including the ANSI-characters.
+   */
   get length() {
     return this.string.length;
   }
 
+  /**
+   * Calculates the length of the string excluding the ANSI-characters.
+   * @returns {number} The length of the string excluding the ANSI-characters.
+   */
   get strippedLength() {
     return this.stripped.length;
   }
 
+  /**
+   * Returns the string stripped of its ANSI-characters.
+   * @returns {string} The string stripped of its ANSI-characters.
+   */
   get stripped() {
     return this.string.replace(regExp, '');
   }
 
+  /**
+   * Instantiates a new {@link SbAnsiString} object.
+   * @param {string} string The original string.
+   */
   constructor(string) {
     this.string = string;
   }
 
+  /**
+   * Returns a substring, of the original string. The indexing does account for
+   * the ANSI-characters, which means, that the indexing excludes the ANSI-
+   * characters.
+   * @param {number} indexA The start index of the substring.
+   * @param {number} indexB The end index of the substring.
+   * @returns {string} The substring of the stripped string including the ANSI-
+   * charachters.
+   */
   substring(indexA, indexB) {
     if (indexB == undefined) {
       indexB = this.strippedLength;
@@ -50,10 +89,20 @@ class SbAnsiString {
     return this.string.substring(indexA + indexAOffset, indexB + indexBOffset);
   }
 
+  /**
+   * Strips a string of its ANSI-characters.
+   * @param {string} string The string to strip.
+   * @returns {string} The the stripped string excluding the ANSI-charachters.
+   */
   static strip(string) {
     return string.replace(regExp, '');
   }
 
+  /**
+   * Calculates the length of a string excluding the ANSI-characters.
+   * @param {string} string The string get the stripped length from.
+   * @returns {number} The length of the string excluding the ANSI-characters.
+   */
   static strippedLength(string) {
     return SbAnsiString.strip(string).length;
   }
