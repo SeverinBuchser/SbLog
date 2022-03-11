@@ -4,7 +4,8 @@
  */
 
 const { SbLogCoreOptions } = require('../core');
-const { empty } = require('../../separator');
+const prelog = require('../../prelog');
+const sepatator = require('../../separator');
 
 /**
  * @classdesc Describes the options which a {@link SbLogVertical} object can
@@ -13,9 +14,10 @@ const { empty } = require('../../separator');
 class SbLogVerticalOptions extends SbLogCoreOptions {
   /**
    * Default options.
-   * @see {@link empty}
+   * @see {@link sepatator}
+   * @see {@link prelog}
    */
-  static defaults = new SbLogVerticalOptions(empty(1), lines => lines)
+  static defaults = new SbLogVerticalOptions(sepatator.empty(1), prelog.none)
 
   /**
    * Instantiates a new {@link SbLogVerticalOptions} object.

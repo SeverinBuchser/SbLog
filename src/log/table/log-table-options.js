@@ -5,9 +5,9 @@
 
 const { SbLogVerticalOptions } = require('../vertical');
 const { SbLogHorizontalOptions } = require('../horizontal');
-const { border } = require('../../prelog');
-const { vLine } = require('../../separator');
-const { solid } = require('../../line-config');
+const prelog = require('../../prelog');
+const separator = require('../../separator');
+const lineConfig = require('../../line-config');
 
 /**
  * @classdesc Describes the options which a {@link SbLogHorizontal} object can
@@ -16,10 +16,16 @@ const { solid } = require('../../line-config');
 class SbLogTableOptions extends SbLogVerticalOptions {
   /**
    * Default options.
-   * @see {@link vLine}
-   * @see {@link border}
+   * @see {@link separator}
+   * @see {@link prelog}
    */
-  static defaults = new SbLogTableOptions([], undefined, undefined, vLine(), border())
+  static defaults = new SbLogTableOptions(
+    [],
+    undefined,
+    undefined,
+    separator.vLine(),
+    prelog.border()
+  )
 
   /**
    * Instantiates a new {@link SbLogTableOptions} object.
@@ -75,9 +81,9 @@ class SbLogTableOptions extends SbLogVerticalOptions {
 class SbLogTableRowOptions extends SbLogHorizontalOptions {
   /**
    * Default options.
-   * @see {@link solid}
+   * @see {@link lineConfig}
    */
-  static defaults = new SbLogTableRowOptions([], ' ' + solid.v + ' ');
+  static defaults = new SbLogTableRowOptions([], ' ' + lineConfig.solid.v + ' ');
 
   /**
    * Instantiates a new {@link SbLogTableRowOptions} object.

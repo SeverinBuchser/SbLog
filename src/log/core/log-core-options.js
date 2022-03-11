@@ -3,7 +3,8 @@
  * @module SbLogCoreOptions
  */
 
-const SbOptions = require('../../options/options');
+const { SbOptions } = require('../../options');
+const prelog = require('../../prelog');
 
 /**
  * @classdesc Describes the options which a {@link SbLogCore} object can take.
@@ -11,8 +12,9 @@ const SbOptions = require('../../options/options');
 class SbLogCoreOptions extends SbOptions {
   /**
    * Default options.
+   * @see {@link prelog}
    */
-  static defaults = new SbLogCoreOptions(lines => lines);
+  static defaults = new SbLogCoreOptions(prelog.none);
 
   /**
    * Instantiates a new {@link SbLogCoreOptions} object.

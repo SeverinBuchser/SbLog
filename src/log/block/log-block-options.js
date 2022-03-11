@@ -5,6 +5,7 @@
 
 const { SbLogCoreOptions } = require('../core');
 const color = require('../../color');
+const prelog = require('../../prelog');
 
 /**
  * @classdesc Describes the options which a {@link SbLogBlock} object can take.
@@ -13,8 +14,9 @@ class SbLogBlockOptions extends SbLogCoreOptions {
   /**
    * Default options.
    * @see {@link color}
+   * @see {@link prelog}
    */
-  static defaults = new SbLogBlockOptions(30, 'default', false, lines => lines);
+  static defaults = new SbLogBlockOptions(30, 'default', false, prelog.none);
 
   /**
    * Instantiates a new {@link SbLogBlockOptions} object.

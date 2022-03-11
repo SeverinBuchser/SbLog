@@ -4,6 +4,7 @@
  */
 
 const { SbLogCoreOptions } = require('../core');
+const prelog = require('../../prelog');
 
 /**
  * @classdesc Describes the options which a {@link SbLogHorizontal} object can
@@ -12,8 +13,9 @@ const { SbLogCoreOptions } = require('../core');
 class SbLogHorizontalOptions extends SbLogCoreOptions {
   /**
    * Default options.
+   * @see {@link prelog}
    */
-  static defaults = new SbLogHorizontalOptions(3, lines => lines);
+  static defaults = new SbLogHorizontalOptions(3, prelog.none);
 
   /**
    * Instantiates a new {@link SbLogHorizontalOptions} object.
