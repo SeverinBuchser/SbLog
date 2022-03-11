@@ -1,3 +1,8 @@
+
+/**
+ * Predefined solid line characters using unicode.
+ * @constant {object}
+ */
 const solid = {
   h: '\u2500',
   v: '\u2502',
@@ -12,6 +17,10 @@ const solid = {
   mM: '\u253C'
 }
 
+/**
+ * Predefined solid-bold line characters using unicode.
+ * @constant {object}
+ */
 const solidBold = {
   h: '\u2501',
   v: '\u2503',
@@ -26,6 +35,10 @@ const solidBold = {
   mM: '\u254B'
 }
 
+/**
+ * Predefined solid-rounded line characters using unicode.
+ * @constant {object}
+ */
 const solidRounded = {
   h: '\u2500',
   v: '\u2502',
@@ -40,6 +53,10 @@ const solidRounded = {
   mM: '\u253C'
 }
 
+/**
+ * Predefined dashed line characters using unicode.
+ * @constant {object}
+ */
 const dashed = {
   h: '\u2504',
   v: '\u2506',
@@ -54,6 +71,10 @@ const dashed = {
   mM: '\u253C'
 }
 
+/**
+ * Predefined dashed-bold line characters using unicode.
+ * @constant {object}
+ */
 const dashedBold = {
   h: '\u2505',
   v: '\u2507',
@@ -68,6 +89,10 @@ const dashedBold = {
   mM: '\u254B'
 }
 
+/**
+ * Predefined dashed-round line characters using unicode.
+ * @constant {object}
+ */
 const dashedRounded = {
   h: '\u2504',
   v: '\u2506',
@@ -82,6 +107,10 @@ const dashedRounded = {
   mM: '\u253C'
 }
 
+/**
+ * Predefined epmty line characters.
+ * @constant {object}
+ */
 const empty = {
   h: ' ',
   v: ' ',

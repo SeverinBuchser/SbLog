@@ -1,5 +1,10 @@
 const chalk = require('chalk');
 
+/**
+ * Predefined color formats using chalk.
+ * @constant {object}
+ * @see {@link https://www.npmjs.com/package/chalk}
+ */
 const color = {
   'default': string => string,
   'primary': chalk.cyanBright.bold,
