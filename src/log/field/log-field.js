@@ -4,7 +4,7 @@
  */
 
 const { SbLogTable, SbLogTableOptions } = require('../table');
-const { none } = require('../../separator');
+const separator = require('../../separator');
 const fieldTransform = require('./field-transform');
 const fieldConfig = require('./field-config');
 
@@ -195,7 +195,7 @@ class SbLogField extends SbLogTable {
 
     this.options = SbLogTableOptions.merge({
       rows: this.buildRows(fieldsRows, fieldsRowsWidths),
-      separatorBuilder: none,
+      separatorBuilder: separator.none,
       prelog: lines => lines
     });
     return fieldsRows;
