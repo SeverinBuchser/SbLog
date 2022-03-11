@@ -1,3 +1,8 @@
+/**
+ * util module.
+ * @module util
+ */
+
 const SbAnsiString = require('./ansi-string');
 const SbVerticalString = require('./vertical-string');
 
