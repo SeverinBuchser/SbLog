@@ -2,7 +2,7 @@
   "name": "sb-log",
   "version": "1.0.4",
   "description": "A library for formatted console logs",
-  "main": "dist/library.js",
+  "main": "library.js",
   "scripts": {
     "build": "webpack",
     "example": "node example"
@@ -20,6 +20,8 @@
     "word-wrap": "^1.2.3"
   },
   "devDependencies": {
+    "copy-pkg-json-webpack-plugin": "^0.0.40",
+    "copy-webpack-plugin": "^10.2.4",
     "webpack": "^5.69.1",
     "webpack-cli": "^4.9.2",
     "webpack-node-externals": "^3.0.0"

@@ -55,7 +55,7 @@ class SbLines extends Array {
    */
   addMarginLeft(margin) {
     for (let i = 0 ; i < margin ; i++) {
-      this.spliceVertical(0, 0, builer.buildVs(this.height, 'empty'));
+      this.spliceVertical(0, 0, builder.buildVs(this.height, 'empty'));
     }
   }
 
@@ -65,7 +65,7 @@ class SbLines extends Array {
    */
   addMarginRight(margin) {
     for (let i = 0 ; i < margin ; i++) {
-      this.spliceVertical(this.width - 1, 0, builer.buildVs(this.height, 'empty'));
+      this.spliceVertical(this.width - 1, 0, builder.buildVs(this.height, 'empty'));
     }
   }
 

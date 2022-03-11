@@ -17,9 +17,9 @@ defaultLog.log("Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed dia
 
 
 const smallLoger = new SbLogBlock({
-  width: 40,
+  width: 30,
   prelog: prelog.border(),
-  format: 'primary',
+  format: 'default',
   applyFormatToWholeBlock: false
 })
 console.log()
