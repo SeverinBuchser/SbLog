@@ -10,8 +10,9 @@ const color = require('../../color');
  * Describes the options which a {@link SbLogBlock} object can take.
  */
 class SbLogBlockOptions extends SbLogCoreOptions {
-  /*
+  /**
    * Default options.
+   * @see {@link color}
    */
   static defaults = new SbLogBlockOptions(30, 'default', false, lines => lines);
 

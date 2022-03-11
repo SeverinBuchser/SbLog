@@ -9,7 +9,7 @@ const SbOptions = require('../../options/options');
  * Describes the options which a {@link SbLogCore} object can take.
  */
 class SbLogCoreOptions extends SbOptions {
-  /*
+  /**
    * Default options.
    */
   static defaults = new SbLogCoreOptions(lines => lines);

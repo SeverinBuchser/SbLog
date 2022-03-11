@@ -9,7 +9,7 @@ const { SbLogCoreOptions } = require('../core');
  * Describes the options which a {@link SbLogHorizontal} object can take.
  */
 class SbLogHorizontalOptions extends SbLogCoreOptions {
-  /*
+  /**
    * Default options.
    */
   static defaults = new SbLogHorizontalOptions(3, lines => lines);

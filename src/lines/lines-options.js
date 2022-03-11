@@ -10,8 +10,9 @@ const color = require('../color');
  * Describes the options which a {@link SbLines} object can take.
  */
 class SbLinesOptions extends SbOptions {
-  /*
+  /**
    * Default options.
+   * @see {@link color}
    */
   static defaults = new SbLinesOptions(30, 'default', false);
 
