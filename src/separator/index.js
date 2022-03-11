@@ -1,3 +1,8 @@
+/**
+ * separator module.
+ * @module separator
+ */
+
 const hLine = require('./h-line');
 const empty = require('./empty');
 const vLine = require('./v-line');

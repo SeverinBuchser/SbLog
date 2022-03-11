@@ -11,7 +11,7 @@ const finder = require('../finder');
  * junction is used instead of the horizontal line segment.
  * @function border
  * @param {string} config The line config to use.
- * @returns {string} The lines block with a border around it.
+ * @returns {SbLines} The lines block with a border around it.
  * @see {@link lineConfig}
  * @see {@link https://www.w3.org/TR/xml-entity-names/025.html}
  */

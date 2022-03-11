@@ -1,6 +1,15 @@
 const { builder } = require('../util');
 const lineConfig = require('../line-config');
 
+/**
+ * Creates a vertical line separator with left- and right-margin. The margins
+ * are spaces.
+ * @function hLine
+ * @param {number} marginOrMarginLeft The left-margin or left- and right-margin.
+ * @param {number} marginRight The right-margin.
+ * @param {string} config The line config to use.
+ * @returns {string} The separator.
+ */
 module.exports = function hLine(marginOrMarginLeft = 0, marginRight = 0, config = 'solid') {
   if (!marginRight) {
     marginRight = marginOrMarginLeft;
