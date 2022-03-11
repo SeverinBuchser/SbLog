@@ -32,10 +32,13 @@ class SbLinesOptions extends SbOptions {
   /**
    * Merges options width default options. If the default options are not
    * undefined, the {@link SbLinesOptions.defaults} member gets used as the
-   * default options.
+   * default options. If the format of the options is of type string, the
+   * format should represent a predefined format, defined with chalk. For the
+   * definitions.
    * @param {object} options Any options object.
    * @param {object} defaults The defaults options.
    * @returns {object} The merged options.
+   * @see {@link color}
    */
   static merge(options, defaults) {
     defaults = super.getDefaults(defaults, SbLinesOptions.defaults);

@@ -8,11 +8,11 @@ const wrap = require('word-wrap');
 const { SbAnsiString, SbVerticalString, whitespace, builder } = require('../util');
 
 /**
- * A class used to store strings in form of an array. The class manages the
- * insertion and overall manipulation of the strings. The main difficulty is to
- * have ANSI-escape-characters in the strings, which increases the length of
- * each string, but does not change the string length visibly (zero-width-
- * characters). So to handle this problem, this class can be used.
+ * @classdesc A class used to store strings in form of an array. The class
+ * manages the insertion and overall manipulation of the strings. The main
+ * difficulty is to have ANSI-escape-characters in the strings, which increases
+ * the length of each string, but does not change the string length visibly
+ * (zero-width-characters). So to handle this problem, this class can be used.
  */
 class SbLines extends Array {
 
