@@ -1,4 +1,11 @@
 {
+  "add": {
+    "name": "ADDED",
+    "fields": [
+      "what"
+    ],
+    "format": "success"
+  },
   "compile": {
     "name": "COMPILED",
     "fields": [
@@ -59,15 +66,22 @@
     "fields": [
       "file"
     ],
-    "format": "warn",
+    "format": "fail",
     "multiple": true
+  },
+  "error": {
+    "name": "ERROR",
+    "fields": [
+      { "name": "message", "format": "fail" }
+    ],
+    "format": "fail"
   },
   "inform": {
     "name": "INFO",
     "fields": [
-      { "name": "message", "format": "info" }
+      { "name": "message" }
     ],
-    "format": "info"
+    "format": "bold"
   },
   "warn": {
     "name": "WARNING",

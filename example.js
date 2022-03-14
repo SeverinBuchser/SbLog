@@ -56,9 +56,11 @@ verticalLog.log([
 
 const startLog = new SbLogField('start');
 const entryLog = new SbLogField('entry');
+const addLog = new SbLogField('add');
 const copyLog = new SbLogField('copy');
 const createLog = new SbLogField('create');
 const deleteLog = new SbLogField('delete');
+const errorLog = new SbLogField('error');
 const informLog = new SbLogField('inform');
 const warnLog = new SbLogField('warn');
 const compileLog = new SbLogField('compile');
@@ -70,6 +72,8 @@ startLog.log("building process", new Date());
 console.log()
 entryLog.log(["./dark.scss", "./light.css"]);
 console.log()
+addLog.log("dark theme");
+console.log()
 createLog.log(["./dark.css", "./light.css"], ["100kb", "100kb"]);
 console.log()
 copyLog.log(["./dark.css", "./light.css"], ["./dist/dark.css", "./dist/light.css"]);
@@ -78,6 +82,7 @@ deleteLog.log(["./dark.css", "./light.css"]);
 console.log()
 informLog.log("There is an information, like something is deprecated.");
 warnLog.log("There is an important warning!");
+errorLog.log("There has been an error!");
 compileLog.log("dark theme", "1000ms");
 endLog.log("building process", new Date());
 
