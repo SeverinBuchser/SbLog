@@ -20,7 +20,7 @@ const { SbOptions } = require('./options');
 const prelog = require('./prelog');
 const separator = require('./separator');
 const util = require('./util');
-const color = require('./color');
+const format = require('./format');
 const lineConfig = require('./line-config');
 const replacer = require('./line-config');
 
@@ -48,7 +48,7 @@ module.exports = {
   prelog,
   separator,
   util,
-  color,
+  format,
   lineConfig,
   replacer
 }

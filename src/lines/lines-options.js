@@ -4,7 +4,7 @@
  */
 
 const { SbOptions } = require('../options');
-const color = require('../color');
+const format = require('../format');
 
 /**
  * @classdesc Describes the options which a {@link SbLines} object can take.
@@ -12,9 +12,9 @@ const color = require('../color');
 class SbLinesOptions extends SbOptions {
   /**
    * Default options.
-   * @see {@link color}
+   * @see {@link format}
    */
-  static defaults = new SbLinesOptions(30, color.none, false);
+  static defaults = new SbLinesOptions(30, format.none, false);
 
   /**
    * Instantiates a new {@link SbLinesOptions} object.
@@ -39,7 +39,7 @@ class SbLinesOptions extends SbOptions {
    * @param {object} options Any options object.
    * @param {object} defaults The defaults options.
    * @returns {object} The merged options.
-   * @see {@link color}
+   * @see {@link format}
    */
   static merge(options, defaults) {
     defaults = super.getDefaults(defaults, SbLinesOptions.defaults);
@@ -52,7 +52,7 @@ class SbLinesOptions extends SbOptions {
     ], options, defaults);
 
     if (typeof options.format == 'string') {
-      options.format = color[options.format];
+      options.format = format[options.format];
     }
     return options;
   }

@@ -4,7 +4,7 @@
  */
 
 const { SbLogCoreOptions } = require('../core');
-const color = require('../../color');
+const format = require('../../format');
 const prelog = require('../../prelog');
 
 /**
@@ -13,10 +13,10 @@ const prelog = require('../../prelog');
 class SbLogBlockOptions extends SbLogCoreOptions {
   /**
    * Default options.
-   * @see {@link color}
+   * @see {@link format}
    * @see {@link prelog}
    */
-  static defaults = new SbLogBlockOptions(30, color.none, false, prelog.none);
+  static defaults = new SbLogBlockOptions(30, format.none, false, prelog.none);
 
   /**
    * Instantiates a new {@link SbLogBlockOptions} object.
@@ -42,7 +42,7 @@ class SbLogBlockOptions extends SbLogCoreOptions {
    * @param {object} options Any options object.
    * @param {object} defaults The defaults options.
    * @returns {object} The merged options.
-   * @see {@link color}
+   * @see {@link format}
    */
   static merge(options, defaults) {
     defaults = super.getDefaults(defaults, SbLogBlockOptions.defaults);
@@ -55,7 +55,7 @@ class SbLogBlockOptions extends SbLogCoreOptions {
     ], options, defaults);
 
     if (typeof options.format == 'string') {
-      options.format = color[options.format];
+      options.format = format[options.format];
     }
     return options;
   }
