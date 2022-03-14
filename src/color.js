@@ -6,12 +6,12 @@ const chalk = require('chalk');
  * @see {@link https://www.npmjs.com/package/chalk}
  */
 const color = {
-  'default': string => string,
-  'primary': chalk.cyanBright.bold,
-  'secondary': chalk.magentaBright.bold,
-  'success': chalk.greenBright.bold,
-  'warn': chalk.redBright.bold,
-  'info': chalk.yellowBright.bold
+  none: string => string,
+  primary: chalk.cyanBright.bold,
+  secondary: chalk.magentaBright.bold,
+  success: chalk.greenBright.bold,
+  warn: chalk.redBright.bold,
+  info: chalk.yellowBright.bold
 }
 
 module.exports = color;

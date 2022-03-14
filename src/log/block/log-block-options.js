@@ -16,7 +16,7 @@ class SbLogBlockOptions extends SbLogCoreOptions {
    * @see {@link color}
    * @see {@link prelog}
    */
-  static defaults = new SbLogBlockOptions(30, 'default', false, prelog.none);
+  static defaults = new SbLogBlockOptions(30, color.none, false, prelog.none);
 
   /**
    * Instantiates a new {@link SbLogBlockOptions} object.

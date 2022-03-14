@@ -14,7 +14,7 @@ class SbLinesOptions extends SbOptions {
    * Default options.
    * @see {@link color}
    */
-  static defaults = new SbLinesOptions(30, 'default', false);
+  static defaults = new SbLinesOptions(30, color.none, false);
 
   /**
    * Instantiates a new {@link SbLinesOptions} object.
