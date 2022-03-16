@@ -1,10 +1,9 @@
 /**
- * lines module.
- * @module lines
+ * @module sb-log.lines
  */
 
-const SbLines = require('./lines');
-const SbLinesOptions = require('./lines-options');
+const { SbLines } = require('./class');
+const { SbLinesOptions } = require('./options');
 
 module.exports = {
   SbLines,

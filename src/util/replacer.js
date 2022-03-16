@@ -1,8 +1,10 @@
+/**
+ * @module sb-log.util.replacer
+ */
 
 /**
- * Replaces characters of a string, a {@link SbVerticalString} or a
- * {@link SbAnsiString} at specific indices with the specified character.
- * @function replace
+ * Replaces characters of a string, a `SbVerticalString` or a `SbAnsiString` at
+ * specific indices with the specified character.
  * @param {string} string The string to replace the characters at the specified
  * indices.
  * @param {Array<number>} indices The indices where to replace a character.

@@ -1,3 +1,7 @@
+/**
+ * @module sb-log
+ */
+
 const { SbLines, SbLinesOptions } = require('./lines');
 const {
   SbLogCore,

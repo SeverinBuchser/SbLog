@@ -1,10 +1,9 @@
 /**
- * horizontal module.
- * @module horizontal
+ * @module sb-log.log.horizontal
  */
 
-const SbLogHorizontal = require('./log-horizontal');
-const SbLogHorizontalOptions = require('./log-horizontal-options');
+const { SbLogHorizontal } = require('./class');
+const { SbLogHorizontalOptions } = require('./options');
 
 module.exports = {
   SbLogHorizontal,

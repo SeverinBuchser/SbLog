@@ -1,9 +1,8 @@
 /**
- * field module.
- * @module field
+ * @module sb-log.log.field
  */
 
-const SbLogField = require('./log-field');
+const { SbLogField } = require('./class');
 const fieldTransform = require('./field-transform');
 const fieldConfig = require('./field-config');
 

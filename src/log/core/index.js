@@ -1,11 +1,10 @@
 /**
- * core module.
- * @module core
+ * @module sb-log.log.core
  */
 
 
-const SbLogCore = require('./log-core');
-const SbLogCoreOptions = require('./log-core-options');
+const { SbLogCore } = require('./class');
+const { SbLogCoreOptions } = require('./options');
 
 module.exports = {
   SbLogCore,

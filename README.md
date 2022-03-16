@@ -23,9 +23,9 @@ log.log("Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonum
 //  diam nonumy eirmod tempor inv
 ```
 
-With the default options of `SbLogBlock`, a string can be logged to the console which has a width of 30 characters. If the string exceeds this width, the string gets wrapped onto a new line. The only downside to this is that as you can see, the string gets cut mid word. This will maybe fixed in future versions. 
+With the default options of `SbLogBlock`, a string can be logged to the console which has a width of 30 characters. If the string exceeds this width, the string gets wrapped onto a new line. The only downside to this is that as you can see, the string gets cut mid word. This will maybe fixed in future versions.
 
-The default options also include a default format/color:
+The default options also include a default format:
 
 ```js
 // Default SbLog options:
@@ -51,18 +51,19 @@ this.options.prelog(this.build(string)).forEach(line => console.log(line))
 
 You can plug into a log, by calling the `build` method and do whatever you desire with the output.
 
-### Colors
+### Formats
 
-There are some predefined colors, which can be used by passing a string like `'default'`, into the format field of the log's options. The colors are defined using  [chalk](https://www.npmjs.com/package/chalk):
+There are some predefined formats, which can be used by passing a string like `'default'`, into the format field of the log's options. The formats are defined using  [chalk](https://www.npmjs.com/package/chalk):
 
 | Format    | Implementation             |
 | --------- | -------------------------- |
 | default   | `string => string`         |
+| bold      | `chalk.bold`               |
 | primary   | `chalk.cyanBright.bold`    |
 | secondary | `chalk.magentaBright.bold` |
 | success   | ` chalk.greenBright.bold`  |
-| warn      | ` chalk.redBright.bold`    |
-| info      | ` chalk.yellowBright.bold` |
+| warn      | ` chalk.yellowBright.bold` |
+| fail      | ` chalk.redBright.bold`    |
 
 You can plug in any function which takes a string and returns a string, **but you need to be careful with zero-width-characters!** At the moment only the characters for ANSI-Color-Codes are accounted for.
 
@@ -198,11 +199,11 @@ There are other logs:
 | `SbLogTable`      | Combines logs into one log. The loggers can be arranged into a table. The configuration of the table layout happens in the tables options. |
 | `SbLogField`      | Logs different fields with different formats. You can use predefined configurations in `fieldConfig` or you can define your own. |
 
-A log extends the core log `SbLogCore`. This class defines the `log` method any only accepts a `prelog` as an options. It also defines an empty build method, which just returns an empty array. 
+A log extends the core log `SbLogCore`. This class defines the `log` method any only accepts a `prelog` as an options. It also defines an empty build method, which just returns an empty array.
 
 ## Further Documentation
 
-For more accurate and detailed insight go visit the [GitHub Page](https://github.com/SeverinBuchser/SbLog.git) and look into the source code.
+For more accurate and detailed insight go visit the [GitHub Page](https://github.com/SeverinBuchser/SbLog.git) and look into the source code or the documentation.
 
 ## Creator
 
@@ -210,4 +211,3 @@ Severin Buchser
 
 * [GitHub](https://github.com/SeverinBuchser)
 * [Npm](https://www.npmjs.com/~severinbuchser)
-

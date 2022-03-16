@@ -1,10 +1,9 @@
 /**
- * table module.
- * @module table
+ * @module sb-log.log.table
  */
 
-const SbLogTable = require('./log-table');
-const { SbLogTableOptions, SbLogTableRowOptions } = require('./log-table-options');
+const { SbLogTable } = require('./class');
+const { SbLogTableOptions, SbLogTableRowOptions } = require('./options');
 
 module.exports = {
   SbLogTable,

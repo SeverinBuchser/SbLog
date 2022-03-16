@@ -5,6 +5,7 @@
   "main": "library.js",
   "scripts": {
     "build": "webpack",
+    "doc": "node documentation",
     "example": "node example"
   },
   "author": "Severin Buchser",
@@ -22,6 +23,9 @@
   "devDependencies": {
     "copy-pkg-json-webpack-plugin": "^0.0.40",
     "copy-webpack-plugin": "^10.2.4",
+    "jsdoc-api": "^7.1.1",
+    "jsdoc-to-markdown": "^7.1.1",
+    "sb-doc": "file:../SbDoc",
     "webpack": "^5.69.1",
     "webpack-cli": "^4.9.2",
     "webpack-node-externals": "^3.0.0"

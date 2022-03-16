@@ -1,3 +1,7 @@
+/**
+ * @module sb-log.line-config
+ */
+
 
 /**
  * Predefined solid line characters using unicode.
@@ -109,7 +113,7 @@ const dashedRounded = {
 
 /**
  * Predefined epmty line characters.
- * @constant {object}
+ * @constant {object} empty
  */
 const empty = {
   h: ' ',

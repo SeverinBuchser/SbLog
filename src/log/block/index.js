@@ -1,10 +1,8 @@
 /**
- * block module.
- * @module block
+ * @module sb-log.log.block
  */
-
-const SbLogBlock = require('./log-block');
-const SbLogBlockOptions = require('./log-block-options');
+const { SbLogBlock } = require('./class');
+const SbLogBlockOptions = require('./options');
 
 module.exports = {
   SbLogBlock,

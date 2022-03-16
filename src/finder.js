@@ -1,9 +1,14 @@
+/**
+ * @module sb-log.finder
+ */
+
 const { SbAnsiString } = require('./util');
 const lineConfig = require('./line-config');
 
 /**
  * A regexp for identifing vertical sepraration-characters.
  * @constant {RegExp}
+ * @ignore
  */
 const vRegExp = new RegExp(
   [
@@ -19,6 +24,7 @@ const vRegExp = new RegExp(
 /**
  * A regexp for identifing horizontal sepraration-characters.
  * @constant {RegExp}
+ * @ignore
  */
 const hRegExp = new RegExp(
   [
@@ -34,7 +40,6 @@ const hRegExp = new RegExp(
 /**
  * Finds the indices of vertical separation characters in a string or vertical
  * string.
- * @function findVs
  * @param {string | SbVerticalString} string The string in which to find the
  * separator characters.
  * @returns {Array<number>} The indices of the vertical separation characters.
@@ -51,7 +56,6 @@ function findVs(string) {
 /**
  * Finds the indices of horizontal separation characters in a string or vertical
  * string.
- * @function findHs
  * @param {string | SbVerticalString} string The string in which to find the
  * separator characters.
  * @returns {Array<number>} The indices of the horizontal separation characters.

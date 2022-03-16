@@ -1,11 +1,10 @@
 /**
- * SbVerticalString class module.
- * @module SbVerticalString
+ * @module sb-log.util.vertical-string
  */
 
  /**
-  * @classdesc A string class which manages a vertical string. A vertical string
-  * is a string, which stores the characters in a vertical configuration,
+  * A string class which manages a vertical string. A vertical string is a
+  * string, which stores the characters in a vertical configuration,
   * specifically a Array of strings. Each line of the vertical string has
   * exactly one character. The class provides some functionality like a normal
   * string does.
@@ -13,29 +12,34 @@
 class SbVerticalString {
 
   /**
-   * Transforms the vertical string into a normal string.
-   * @returns {string} A normal string containing the characters of the vertical
-   * string.
+   * The individual characters.
+   * @type {Array<string>}
+   */
+   strings;
+
+  /**
+   * A normal string containing the characters of the vertical string.
+   * @type {string}
    */
   get string() {
     return this.strings.join('');
   }
 
   /**
-   * Calculates the legnth/height of the vertical string.
-   * @returns {number} The length of the vertical string.
+   * The length of the vertical string.
+   * @type {number}
    */
   get length() {
     return this.string.length;
   }
 
   /**
-   * Instantiates a new {@link SbVerticalString} object. If the strings
-   * parameter is a string, the string just gets split into an Array of strings,
-   * each of the lines of the Array contains exactly one character of the
-   * original string. If the strings parameter is an Aarray of strings, an index
-   * must be specified. The default index is zero. The index specifies at which
-   * index of a string from the Array to take the character from.
+   * Instantiates a new `SbVerticalString` object. If the strings parameter is a
+   * string, the string just gets split into an Array of strings, each of the
+   * lines of the Array contains exactly one character of the original string.
+   * If the strings parameter is an Aarray of strings, an index must be
+   * specified. The default index is zero. The index specifies at which index of
+   * a string from the Array to take the character from.
    * @param {string | Array<string>} strings The original string of an array of
    * strings.
    * @param {number} index The index from which to retreive the vertical string
@@ -86,6 +90,7 @@ class SbVerticalString {
    * replace.
    * @param {string | function} newSubstrOrFunc The new string or the function
    * to get the new string from.
+   * @returns {SbVerticalString} A new vertical string with replaced characters.
    */
   replace(regexp, newSubstrOrFunc) {
     return new SbVerticalString(this.string.replace(regexp, newSubstrOrFunc).split(''));
@@ -126,4 +131,6 @@ class SbVerticalString {
   }
 }
 
-module.exports = SbVerticalString;
+module.exports = {
+  SbVerticalString
+}

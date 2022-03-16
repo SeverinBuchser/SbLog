@@ -1,11 +1,9 @@
 /**
- * vertical module.
- * @module vertical
+ * @module sb-log.log.vertical
  */
 
-
-const SbLogVertical = require('./log-vertical');
-const SbLogVerticalOptions = require('./log-vertical-options');
+const { SbLogVertical } = require('./class');
+const { SbLogVerticalOptions } = require('./options');
 
 module.exports = {
   SbLogVertical,

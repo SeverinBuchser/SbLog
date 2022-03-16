@@ -1,11 +1,11 @@
 /**
- * SbAnsiString class module.
- * @module SbAnsiString
+ * @module sb-log.util.ansi-string
  */
 
 /**
  * A regexp for identifing ANSI-escape-characters.
  * @constant {RegExp}
+ * @ignore
  */
 const regExp = new RegExp([
   '[\\u001B\\u009B][[\\]()#;?]*(?:(?:(?:(?:;[-a-zA-Z\\d\\/#&.:=?%@~_]+)*|[a-zA-Z\\d]+(?:;[-a-zA-Z\\d\\/#&.:=?%@~_]*)*)?\\u0007)',
@@ -13,38 +13,44 @@ const regExp = new RegExp([
 ].join('|'), 'g')
 
 /**
- * @classdesc A string which works with ANSI-escape-characters. The goal of the
- * class is to work with a string, which has ANSI-characters and to not
- * interfere with these.
+ * A string which works with ANSI-escape-characters. The goal of the class is to
+ * work with a string, which has ANSI-characters and to not interfere with
+ * these.
  */
 class SbAnsiString {
 
   /**
-   * Calculates the length of the string including the ANSI-characters.
-   * @returns {number} The length of the string including the ANSI-characters.
+   * The original string.
+   * @type {string}
+   */
+  string;
+
+  /**
+   * The length of the string including the ANSI-characters.
+   * @type {number}
    */
   get length() {
     return this.string.length;
   }
 
   /**
-   * Calculates the length of the string excluding the ANSI-characters.
-   * @returns {number} The length of the string excluding the ANSI-characters.
+   * The length of the string excluding the ANSI-characters.
+   * @type {number}
    */
   get strippedLength() {
     return this.stripped.length;
   }
 
   /**
-   * Returns the string stripped of its ANSI-characters.
-   * @returns {string} The string stripped of its ANSI-characters.
+   * The string stripped of its ANSI-characters.
+   * @type {string}
    */
   get stripped() {
     return this.string.replace(regExp, '');
   }
 
   /**
-   * Instantiates a new {@link SbAnsiString} object.
+   * Instantiates a new `SbAnsiString` object.
    * @param {string} string The original string.
    */
   constructor(string) {
@@ -108,4 +114,6 @@ class SbAnsiString {
   }
 }
 
-module.exports = SbAnsiString;
+module.exports = {
+  SbAnsiString
+}

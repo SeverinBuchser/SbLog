@@ -1,3 +1,7 @@
+/**
+ * @module sb-log.log
+ */
+
 const { SbLogCore, SbLogCoreOptions } = require('./core');
 const { SbLogBlock, SbLogBlockOptions } = require('./block');
 const { SbLogHorizontal, SbLogHorizontalOptions } = require('./horizontal');

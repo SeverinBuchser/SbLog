@@ -1,10 +1,9 @@
 /**
- * util module.
- * @module util
+ * @module sb-log.util
  */
 
-const SbAnsiString = require('./ansi-string');
-const SbVerticalString = require('./vertical-string');
+const { SbAnsiString } = require('./ansi-string');
+const { SbVerticalString } = require('./vertical-string');
 
 const whitespace = require('./whitespace');
 const builder = require('./builder');

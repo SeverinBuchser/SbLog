@@ -1,8 +1,11 @@
-const SbAnsiString = require('./ansi-string');
+/**
+ * @module sb-log.util.whitespace
+ */
+
+const { SbAnsiString } = require('./ansi-string');
 
 /**
  * Removes any whitespace at the end of a string.
- * @function trimTrailing
  * @param {string | SbVerticalString} string The string to remove the whitespace
  * from.
  * @returns {string | SbVerticalString} The new trimmed string or vertical
@@ -14,8 +17,7 @@ function trimTrailing(string) {
 
 /**
  * Adds spaces to the end of a string to reach the specified width. This method
- * uses {@link SbAnsiString} to get the width without the ANSI-characters.
- * @function fillTrailing
+ * uses `SbAnsiString` to get the width without the ANSI-characters.
  * @param {string | SbVerticalString} string The string to remove the whitespace
  * from.
  * @param {number} width The width of the final string.
